@@ -1,14 +1,20 @@
 const app = require('express')()
-const ipify = require('ipify')
+const axios = require('axios')
+const cors = require('cors')
+const IPIFY_URL = `https://api.ipify.org`
 const port = process.env.PORT || 8080
 
-const getPublicIP = () => {
-  return ipify({ useIPv6: false })
-}
+app.use(cors())
 
 app.get('/', async (req, res) => {
   try {
-    const ip = await getPublicIP()
+    const ip = await axios({
+      method: 'get',
+      url: IPIFY_URL,
+      params: {
+        format: 'json'
+      }
+    })
     console.log({ ip })
     res.status(200).json({ ip })
   } catch (err) {
