@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "public-ip": "^4.0.4"
+    "ipify": "^5.0.0"
   }
 }
