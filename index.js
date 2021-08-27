@@ -8,15 +8,15 @@ app.use(cors())
 
 app.get('/', async (req, res) => {
   try {
-    const ip = await axios({
+    const response = await axios({
       method: 'get',
       url: IPIFY_URL,
       params: {
         format: 'json'
       }
     })
-    console.log({ ip })
-    res.status(200).json({ ip })
+    console.log(repsonse.data)
+    res.status(200).json(response.data)
   } catch (err) {
     res.status(500).json({ message: err })
   }
