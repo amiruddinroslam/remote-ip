@@ -1,10 +1,20 @@
 const app = require('express')()
 const axios = require('axios')
 const cors = require('cors')
-const IPIFY_URL = `https://api.ipify.org`
+const IPIFY_URL = 'https://api.ipify.org'
 const port = process.env.PORT || 8080
 
 app.use(cors())
+
+// const getRemoteIP = () => {
+//   return axios({
+//       method: 'get',
+//       url: IPIFY_URL,
+//       params: {
+//         format: 'json'
+//       }
+//     })
+// }
 
 app.get('/', async (req, res) => {
   try {
@@ -15,8 +25,8 @@ app.get('/', async (req, res) => {
         format: 'json'
       }
     })
-    console.log(repsonse.data)
-    res.status(200).json(response.data)
+    console.log('ip:', repsonse)
+    res.status(200).json(response)
   } catch (err) {
     res.status(500).json({ message: err })
   }
