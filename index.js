@@ -5,7 +5,7 @@ const port = process.env.PORT || 8080
 
 app.use(cors())
 
-getPublicIPv4 = async () => {
+const getPublicIPv4 = async () => {
   return await publicIp.v4()
 }
 
