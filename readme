@@ -1,2 +1,0 @@
-build docker image: docker build -t amiruddinroslam/remote-ip:<tag number> .
-run container: docker run -p <desired port>:8080 <image ID>
