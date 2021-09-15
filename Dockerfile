@@ -1,20 +1,11 @@
-FROM node:14
+FROM node:14 as build
 
-# Create app directory
 WORKDIR /app
+COPY package.json index.js ./
+RUN npm install
 
-# Install app dependencies
-COPY package*.json ./
+FROM node:14-alpine
 
-# RUN npm ci
-# If for production
-RUN npm ci --only=production
-
-# Bundle app source
-COPY . /app
-
-ENV PORT=8080
-
+COPY --from=build /app /
 EXPOSE 8080
-
-CMD ["npm", "start"]
+CMD ["index.js"]
